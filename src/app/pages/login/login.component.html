@@ -1,0 +1,39 @@
+<div class="card card-user">
+    <div class="card-header">
+      <h5 class="card-title">Welcome back!</h5>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputPhoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="inputPhoneNumber" placeholder=""
+                    [(ngModel)]="phoneNumber">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder=""
+                    [(ngModel)]="password">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+
+                    <div class="alert alert-info" *ngIf="errorMessage !== ''">
+                        <button type="button" aria-hidden="true" class="close">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span><b> Warning - </b> {{errorMessage}}</span>
+                    </div>
+
+                    <div class="update ml-auto mr-auto">
+                        <button type="submit" class="btn btn-primary btn-round" (click)="login()">Sign In</button>
+                    </div> 
+                </div>
+            </div>
+        </form>
+        <div><p class="text-muted">Not a member?  <a [routerLink]="[ '/signup' ]">Sign in.</a></p></div>
+    </div>
+</div> 

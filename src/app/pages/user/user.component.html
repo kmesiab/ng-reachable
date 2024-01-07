@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/damir-bosnjak.jpg" alt="...">
+      </div>
+      <div class="card-body">
+        <div class="author">
+
+          <!-- Profile Picture -->
+          <a routerLink="/profile/user">
+            <img class="avatar border-gray" src="assets/img/zodiac/libra.webp" alt="...">
+            <h5 class="title">{{ user.firstname }}</h5>
+          </a>
+
+          <p class="description">{{ user.phone_number }}</p>
+        </div>
+
+        <!-- Daily horoscope -->
+        <p class="description text-center">
+          Libra, seek harmony in your relationships today.
+          Use your charm and diplomacy to resolve conflicts.
+          Balance is key in all aspects of life.
+        </p>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="button-container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+              <h5>250
+                <br>
+                <small>Credits</small>
+              </h5>
+            </div>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+              <h5>12
+                <br>
+                <small>Used</small>
+              </h5>
+            </div>
+            <div class="col-lg-3 mr-auto">
+              <h5>$17.97
+                <br>
+                <small>Spent</small>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Readings</h4>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled team-members">
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  🔮
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                Taro
+                <br />
+                <span class="text-success">
+                  <small>Available</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                    class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  ☪️
+                </div>
+              </div>
+              <div class="col-md-7 col-7">
+                Star Chart
+                <br />
+                <span class="text-success">
+                  <small><a href="#">Ready</a></small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                    class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <div class="col-md-2 col-2">
+                <div class="avatar">
+                  💬
+                </div>
+              </div>
+              <div class="col-ms-7 col-7">
+                Counsel
+                <br />
+                <span class="text-danger">
+                  <small>Offline</small>
+                </span>
+              </div>
+              <div class="col-md-3 col-3 text-right">
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
+                    class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Edit Profile</h5>
+      </div>
+      <div class="card-body">
+        <div *ngIf="errorMessage !== ''">
+        <div class="alert alert-warning">
+          <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
+              <i class="nc-icon nc-simple-remove"></i>
+          </button>
+          <span><b> Warning - </b> {{ errorMessage }}</span>
+        </div>
+      </div>
+        <form>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="user.firstname">
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name" [(ngModel)]="user.lastname">
+              </div>
+            </div>
+
+            <div class="col-md-12 pr-1">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email">
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Birth City</label>
+                <input type="text" class="form-control" name="birthCity" placeholder="City" disabled>
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Birth State</label>
+                <input type="text" class="form-control" name="birthCountry" placeholder="Country" disabled>
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Birth Time</label>
+                <input type="number" class="form-control" name="birthTime" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()">Update Profile</button>
+                      <!-- Sign Out -->
+              <button (click)="signOut()" class="btn btn-outline-primary btn-round">
+                <i class="nc-icon nc-user-run"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

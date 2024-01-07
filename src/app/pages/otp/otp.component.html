@@ -1,0 +1,32 @@
+<div class="card card-user">
+    <div class="card-header">
+        <h5 class="card-title">Enter your code</h5>
+        <div>
+            <p class="text">We texted you a 4 digit code. <i class="nc-icon nc-send"></i></p>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputCode">Code</label>
+                <input type="text" class="form-control" id="inputCode" placeholder="####" [(ngModel)]="otp">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="alert alert-info" *ngIf="errorMessage !== ''">
+                    <button type="button" aria-hidden="true" class="close">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <span><b> Warning - </b> {{errorMessage}}</span>
+                </div>
+                <div class="submit ml-auto mr-auto">
+                    <button class="btn btn-primary btn-round" (click)="verifyOtp()">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p class="text-muted">Didn't get your code? <a [routerLink]="['/signup']">Try again.</a></p>
+        </div>
+    </div>
+</div>
