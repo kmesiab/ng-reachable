@@ -11,8 +11,31 @@ export class CurrentUserService {
 
   constructor(private localStorageService: LocalStorageService) { }
 
-  isSet(): boolean {
-    return !!this.getUser();
+
+  setLoggedIn(user: User, jwt: string): void {
+    this.setUser(user)
+    this.setJwt(jwt)
+  }
+
+  setLoggedOut(): void {
+    this.clearUser()
+    this.clearJwt()
+  }
+
+  isLoggedIn(): boolean {
+    return this.getJwt() !== '';
+  }
+
+  setJwt(jwt: string): void {
+    this.localStorageService.setItem('jwt', jwt);
+  }
+
+  getJwt(): User | null {
+    return this.localStorageService.getItem('jwt');
+  }
+
+  clearJwt(): void {
+    this.localStorageService.removeItem('jwt');
   }
 
   setUser(user: User) {
@@ -20,27 +43,12 @@ export class CurrentUserService {
     this.localStorageService.setItem(this.localStorageKey, user);
   }
 
+
   getUser(): User | null {
     return this.localStorageService.getItem(this.localStorageKey);
   }
 
   clearUser() {
     this.localStorageService.removeItem(this.localStorageKey);
-  }
-
-
-
-  getFakeUser(): User {
-    return {
-      id: 0,
-      firstname: 'Dummy',
-      lastname: 'User',
-      email: 'fake-user@gmail.com',
-      phone_number: '+12533243071',
-      accountVerified: true,
-      password: 'fake_password',
-      accountStatusId: AccountStatus.ACTIVE,
-      accountStatus: mapStatusIdToString(AccountStatus.ACTIVE),
-    };
   }
 }
