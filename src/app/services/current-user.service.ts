@@ -43,7 +43,6 @@ export class CurrentUserService {
     this.localStorageService.setItem(this.localStorageKey, user);
   }
 
-
   getUser(): User | null {
     return this.localStorageService.getItem(this.localStorageKey);
   }
