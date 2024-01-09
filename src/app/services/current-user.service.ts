@@ -23,7 +23,7 @@ export class CurrentUserService {
   }
 
   isLoggedIn(): boolean {
-    return this.getJwt() !== '';
+    return this.getJwt() !== null;
   }
 
   setJwt(jwt: string): void {
