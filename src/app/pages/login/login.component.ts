@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     // If the user is active, send them to their profile page
     let currentUser = this.currentUserService.getUser();
     if (
-      this.currentUserService.isSet() && 
+      this.currentUserService.isLoggedIn() && 
       currentUser.accountStatusId === AccountStatus.ACTIVE
       ) {
       this.router.navigate(["/profile/user"]);
@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.phoneNumber, this.password).subscribe(
       (response) => {
 
-        let user = mapApiDataToUser(response.body);
-        this.currentUserService.setUser(user);
+        let user = mapApiDataToUser(response.body.user);
+        this.currentUserService.setLoggedIn(user, response.body.jwt);
         this.router.navigate(["/profile/user"]);
 
         return

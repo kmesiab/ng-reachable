@@ -26,7 +26,7 @@ export class UserComponent implements OnInit{
 
     ngOnInit(): void {
         
-        if (!this.currentUserService.isSet()) {
+        if (!this.currentUserService.isLoggedIn()) {
             this.router.navigate(['/login']);
             return;
         }
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit{
     }
 
     signOut(): void {
-        this.currentUserService.clearUser();
+        this.currentUserService.setLoggedOut();
         this.router.navigate(['/login']);
         return;
     }
@@ -62,6 +62,7 @@ export class UserComponent implements OnInit{
     handleUpdateResponse(response: HttpResponse<any>): void {
 
         if (response.status === 200) {
+            // The user here is now out of sync with the user in the JWT
             this.currentUserService.setUser(this.user);
         } else {
             this.handleError(new Error(response.body.message));

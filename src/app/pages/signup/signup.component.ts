@@ -35,7 +35,7 @@ export class SignupComponent {
   ) { }
 
   ngOnInit(): void {
-    if (this.currentUserService.isSet()) {
+    if (this.currentUserService.isLoggedIn()) {
 
       let u = this.currentUserService.getUser();
 
