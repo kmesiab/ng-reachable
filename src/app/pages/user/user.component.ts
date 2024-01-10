@@ -6,6 +6,7 @@ import { UserService } from 'app/services/user-service.service';
 import { Router } from '@angular/router';
 import { AccountStatus, User } from 'app/services/user-service.types';
 import { HttpResponse } from '@angular/common/http';
+import { JwtService } from 'app/services/jwt.service';
 
 @Component({
     selector: 'user-cmp',
@@ -17,6 +18,7 @@ export class UserComponent implements OnInit{
 
     user: User;
     errorMessage: string = "";
+    updateMessage: string = "";
 
     constructor(
         private router: Router,
@@ -25,6 +27,9 @@ export class UserComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
+
+        this.errorMessage = "";
+        this.updateMessage = "";
         
         if (!this.currentUserService.isLoggedIn()) {
             this.router.navigate(['/login']);
@@ -37,24 +42,26 @@ export class UserComponent implements OnInit{
             this.router.navigate(['/login']);
             return;
         }
-
     }
 
     closeWarning(): void {
         this.errorMessage = "";
+        this.updateMessage = "";
     }
 
     signOut(): void {
-        this.currentUserService.setLoggedOut();
+        this.currentUserService.clearJwt();
         this.router.navigate(['/login']);
         return;
     }
 
     updateProfile(): void {
 
+
+        this.user.password = null;
         this.userService.update(this.user).subscribe(
             (response: HttpResponse<any>) => this.handleUpdateResponse(response),
-            (error: any) => this.handleError(error)
+            (error: any) => this.showErrorMessage(error)
         )
 
     }
@@ -62,16 +69,20 @@ export class UserComponent implements OnInit{
     handleUpdateResponse(response: HttpResponse<any>): void {
 
         if (response.status === 200) {
-            // The user here is now out of sync with the user in the JWT
-            this.currentUserService.setUser(this.user);
+            this.currentUserService.setJwt(response.body.data.token)
+            this.updateMessage = 'Your profile has been updated.';
         } else {
-            this.handleError(new Error(response.body.message));
+            this.showErrorMessage(new Error(response.body.message));
         }
 
     }
 
-    handleError(error: any): void {
+    showErrorMessage(error: any): void {
         this.errorMessage = error.message;
+    }
+
+    showUpdateMessage(msg: string) {
+        this.updateMessage = msg;
     }
     
 }
