@@ -125,26 +125,40 @@
         <h5 class="card-title">Edit Profile</h5>
       </div>
       <div class="card-body">
+
         <div *ngIf="errorMessage !== ''">
-        <div class="alert alert-warning">
-          <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
+          <div class="alert alert-warning">
+            <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
               <i class="nc-icon nc-simple-remove"></i>
-          </button>
-          <span><b> Warning - </b> {{ errorMessage }}</span>
+            </button>
+            <span><b> Warning - </b> {{ errorMessage }}</span>
+          </div>
+
+          <div *ngIf="updateMessage !== ''">
+            <div class="alert alert-info">
+              <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
+                <i class="nc-icon nc-simple-remove"></i>
+              </button>
+              <span><b> Warning - </b> {{ updateMessage }}</span>
+            </div>
+          </div>
+
+
         </div>
-      </div>
         <form>
           <div class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="user.firstname">
+                <input type="text" class="form-control" name="firstName" placeholder="First Name"
+                  [(ngModel)]="user.firstname">
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" class="form-control" name="lastName" placeholder="Last Name" [(ngModel)]="user.lastname">
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                  [(ngModel)]="user.lastname">
               </div>
             </div>
 
@@ -179,7 +193,7 @@
           <div class="row">
             <div class="update ml-auto mr-auto">
               <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()">Update Profile</button>
-                      <!-- Sign Out -->
+              <!-- Sign Out -->
               <button (click)="signOut()" class="btn btn-outline-primary btn-round">
                 <i class="nc-icon nc-user-run"></i> Sign Out
               </button>

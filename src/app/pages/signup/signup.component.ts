@@ -208,7 +208,6 @@ export class SignupComponent {
   private handleSignupResponse(response: HttpResponse<any>, user: User) {
     if (response.status === 201) {
       console.log("Created user: ", user)
-      this.currentUserService.setUser(user);
       this.attemptSendOtp(user);
     } else {
       console.log('signup error');

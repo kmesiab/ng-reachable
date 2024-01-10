@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit {
   ){}
 
     signOut(): void {
-      this.currentUserService.clearUser();
+      this.currentUserService.clearJwt();
       this.router.navigate(['/login']);
       return;
     }
