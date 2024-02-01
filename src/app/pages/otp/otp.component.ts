@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentUserService } from 'app/services/current-user.service';
-import { OtpService } from 'app/services/otp-service.service';
-import { UserService } from 'app/services/user-service.service';
-import { User } from 'app/services/user-service.types';
+import { OtpService } from 'app/services/otp.service';
+import { UserService } from 'app/services/user.service';
+import { User } from 'app/models/user';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

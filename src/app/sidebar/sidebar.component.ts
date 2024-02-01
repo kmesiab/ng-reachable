@@ -12,7 +12,7 @@ export interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   { path: "/profile/credits", title: "Get Credits", icon: "nc-shop", class: "" },
   { path: "/profile/user", title: "My Profile", icon: "nc-single-02", class: "" },
-  { path: "/profile/notifications", title: "Star Chart", icon: "nc-planet", class: "" },
+  { path: "/profile/birth-chart", title: "Birth Chart", icon: "nc-planet", class: "" },
   { path: "/profile/tables", title: "History", icon: "nc-chat-33", class: "" },
 ];
 
@@ -22,7 +22,7 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: "sidebar.component.html",
 })
 export class SidebarComponent implements OnInit {
-  public menuItems: any[];
+  public menuItems: any[] = [];
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
   }

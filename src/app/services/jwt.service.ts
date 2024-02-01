@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtCustomClaims } from './jwt.service.types';
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { User } from './user-service.types';
+import { User } from '../models/user';
 
 
 @Injectable({

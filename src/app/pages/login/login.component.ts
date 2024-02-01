@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { CurrentUserService } from "app/services/current-user.service";
-import { UserService } from "app/services/user-service.service";
+import { UserService } from "app/services/user.service";
 import { Router, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { AccountStatus, mapApiDataToUser } from "app/services/user-service.types";
+import { mapApiDataToUser } from "app/models/user";
+import { AccountStatus } from "app/models/account-status";
 
 @Component({
   selector: "app-login",
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     
     if (
       this.currentUserService.isLoggedIn() && 
-      this.currentUserService.getUser().accountStatusId === AccountStatus.ACTIVE
+      this.currentUserService.getUser()?.accountStatusId === AccountStatus.ACTIVE
       ) {
       this.router.navigate(["/profile/user"]);
 
