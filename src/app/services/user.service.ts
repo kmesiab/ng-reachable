@@ -1,12 +1,10 @@
-import { Injectable } from "@angular/core";
-import {
-  User,
-  AccountStatus,
-  mapStatusNameToAccountStatus,
-} from "./user-service.types";
+import { AccountStatus } from "../models/account-status";
 import { HttpClient, HttpResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { User } from "../models/user";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { CurrentUserService } from "./current-user.service";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +13,10 @@ export class UserService {
   private baseUrl =
     "https://fng90w0hv0.execute-api.us-west-2.amazonaws.com/dev";
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private currentUserService: CurrentUserService,
+    ) {}
 
   getUserByIdOrPhoneNumber(id: string): Observable<User> {
     return this.http
@@ -34,7 +35,7 @@ export class UserService {
     return this.http.put<any>(`${this.baseUrl}/users`, user, {
       observe: "response",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${this.currentUserService.getJwt()}`,
       },
     });
   }
@@ -43,7 +44,7 @@ export class UserService {
     return this.http.put<any>(`${this.baseUrl}/users`, user, {
       observe: "response",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${this.currentUserService.getJwt()}`,
       },
     });
   }
@@ -58,7 +59,7 @@ export class UserService {
       {
         observe: "response",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${this.currentUserService.getJwt()}`,
         },
       }
     );

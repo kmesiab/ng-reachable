@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-user">
+            <div class="card-header">
+                <h5 class="card-title">{{ user.firstname }} {{ user.lastname}}'s Official Birth Information</h5>
+                <p>
+                    To generate a highly accurate birth chart, it's imperative that we have access to the most
+                    precise information possible. Specifically, we need to know the exact time and location 
+                    of your birth. This critical data plays a fundamental role in our calculations, as it allows 
+                    us to meticulously track the positions of celestial bodies such as planets, stars, and other 
+                    astrological factors.
+                </p>
+            </div>
+            <div class="card-body">
+                <form> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Place of birth, like City and State:</label>
+                                <input type="text" class="form-control" name="place_of_birth" placeholder="Country of Birth"
+                                [(ngModel)]="birthChart.placeofbirth">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" name="date_of_birth"
+                                [(ngModel)]="birthChart.dateofbirth">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Exact Time of Birth</label>
+                                <input type="time" class="form-control" name="time_of_birth"
+                                [(ngModel)]="birthChart.dateofbirth">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-round">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Your Birth Chart</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="chart-container">
+                            <div class="chart-header">
+                            </div>
+                            <div class="chart">
+                              <svg width="400" height="400">
+                                Visualized
+                                <!-- Example elements for a more detailed chart -->
+                                <circle cx="200" cy="200" r="160" fill="#f0f0f0" stroke="#333" stroke-width="2" />
+                                <circle cx="200" cy="200" r="120" fill="#f5a623" />
+                                <line x1="200" y1="40" x2="200" y2="360" stroke="#333" stroke-width="2" />
+                                <line x1="40" y1="200" x2="360" y2="200" stroke="#333" stroke-width="2" />
+                                <text x="180" y="40" text-anchor="middle" fill="#333">Sun</text>
+                                <text x="40" y="180" text-anchor="middle" fill="#333">Ascendant</text>
+                                <!-- Add more chart elements and labels as needed -->
+                              </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <p>
+                            The reason behind this precision lies in the intricate science of astrology.
+                             Each celestial body's position at the time of your birth contributes to the 
+                             unique energy and characteristics that define you. This alignment of celestial 
+                             entities in the cosmos at the moment you entered the world is what we use to 
+                             construct your personalized birth chart.
+                        </p>
+                        <p>
+                            By providing us with your accurate birth information, you enable us to uncover 
+                            insights into your personality, strengths, challenges, and life path. The more 
+                            precise the data, the more precise and valuable your birth chart reading will be, 
+                            offering a deeper understanding of yourself and your life's journey.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

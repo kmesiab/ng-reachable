@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { HttpResponse } from "@angular/common/http";
-import { User, AccountStatus, mapStatusIdToString } from "../../services/user-service.types";
-import { UserService } from "../../services/user-service.service";
+import { User } from "app/models/user";
+import { AccountStatus, mapStatusIdToString } from "app/models/account-status"
+import { UserSignupResponse } from "app/models/user-signup-response";
+import { UserService } from "../../services/user.service";
 import { CurrentUserService } from "../../services/current-user.service";
-import { OtpService } from "../../services/otp-service.service";
+import { OtpService } from "../../services/otp.service";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { PhoneService } from "app/services/phone.service";
@@ -36,20 +38,18 @@ export class SignupComponent {
 
   ngOnInit(): void {
     if (this.currentUserService.isLoggedIn()) {
-
       let u = this.currentUserService.getUser();
-
-      if (u.accountStatusId === AccountStatus.ACTIVE) {
+      if (u !== null && u.accountStatusId === AccountStatus.ACTIVE) {
         this.router.navigate(["/profile/user"]);
         return;
-      };
-
-      this.phoneNumber = u.phone_number;
-      this.firstname = u.firstname;
-      this.lastname = u.lastname
-      this.email = u.email;
+      }
+      if (u !== null) {
+        this.phoneNumber = u.phone_number;
+        this.firstname = u.firstname;
+        this.lastname = u.lastname;
+        this.email = u.email;
+      }
     }
-    
   }
 
   // Method to handle user signup
@@ -103,10 +103,10 @@ export class SignupComponent {
     );
   }
 
-  private processNewUser(newUser: User) {
-    this.userService.signup(newUser).subscribe(
-      (response) => this.handleSignupResponse(response, newUser),
-      (error) => this.handleSignupError(error, newUser)
+  private processNewUser(user: User) {
+    this.userService.signup(user).subscribe(
+      (response) => this.handleSignupResponse(response, response.body),
+      (error) => this.handleSignupError(error, user)
     );
   }
 
@@ -163,22 +163,21 @@ export class SignupComponent {
 
   validateFormFields(): boolean {
     
-
     if (this.password.trim() === "") {
       this.errorMessage = "Please enter a password";
-      return;
+      return false;
     }
 
     if (this.password.trim() !== this.password2.trim()) {
       this.errorMessage = "Passwords do not match";
-      return;
+      return false;
     }
 
     let normalizedPhoneNumber = this.phoneService.normalizePhoneNumber(this.phoneNumber);
 
     if (normalizedPhoneNumber === '') {
       this.errorMessage = 'Invalid phone number.';
-      return;
+      return false;
     }
 
     return true;
@@ -205,10 +204,11 @@ export class SignupComponent {
   }
 
   // Handle the response of the signup process
-  private handleSignupResponse(response: HttpResponse<any>, user: User) {
+  private handleSignupResponse(response: HttpResponse<any>, signupResponse: UserSignupResponse) {
     if (response.status === 201) {
-      console.log("Created user: ", user)
-      this.attemptSendOtp(user);
+      console.log("Created user: ", signupResponse.user);
+      this.currentUserService.setJwt(signupResponse.token);
+      this.attemptSendOtp(signupResponse.user);
     } else {
       console.log('signup error');
       this.errorMessage = response.body.message;
@@ -238,12 +238,12 @@ export class SignupComponent {
   // Handle errors when checking for an existing user.
   // If this error returns a 404, the user doesn't exist
   // and we can safely create it.
-  private handleGetUserError(response: any, newUser: User) {
+  private handleGetUserError(response: any, user: User) {
 
     // The user doesn't exist.  Using new user flow
     if (response.status === 404) {
     
-      this.processNewUser(newUser);
+      this.processNewUser(user);
       return;
     }
 
