@@ -11,7 +11,7 @@ import { CurrentUserService } from "./current-user.service";
 })
 export class UserService {
   private baseUrl =
-    "https://fng90w0hv0.execute-api.us-west-2.amazonaws.com/dev";
+    "https://zge7mkfy2m.execute-api.us-west-2.amazonaws.com/dev";
 
   constructor(
     private http: HttpClient,

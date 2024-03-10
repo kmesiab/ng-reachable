@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OtpService {
 
-  private baseUrl = 'https://fng90w0hv0.execute-api.us-west-2.amazonaws.com/dev/signup-otp';
+  private baseUrl = 'https://zge7mkfy2m.execute-api.us-west-2.amazonaws.com/dev/signup-otp';
 
   constructor(private http: HttpClient) { }
 

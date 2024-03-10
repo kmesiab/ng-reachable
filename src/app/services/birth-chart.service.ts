@@ -11,13 +11,13 @@ import { map } from "rxjs/operators";
 export class BirthChartService {
 
   private baseUrl =
-    "https://fng90w0hv0.execute-api.us-west-2.amazonaws.com/dev";
+    "https://zge7mkfy2m.execute-api.us-west-2.amazonaws.com/dev";
 
   constructor(private http: HttpClient) {}
 
   getBirthChartByUserId(id: number): Observable<BirthChart> {
     return this.http
-      .get<any>(`${this.baseUrl}/birth-chart/${id}`, {
+      .get<any>(`${this.baseUrl}/weekly-report/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },

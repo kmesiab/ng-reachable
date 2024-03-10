@@ -10,10 +10,10 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: "/profile/credits", title: "Get Credits", icon: "nc-shop", class: "" },
   { path: "/profile/user", title: "My Profile", icon: "nc-single-02", class: "" },
-  { path: "/profile/birth-chart", title: "Birth Chart", icon: "nc-planet", class: "" },
+  { path: "/profile/birth-chart", title: "Provider Admin", icon: "nc-chart-bar-32", class: "" },
   { path: "/profile/tables", title: "History", icon: "nc-chat-33", class: "" },
+  { path: "/profile/credits", title: "Billing", icon: "nc-shop", class: "" },
 ];
 
 @Component({

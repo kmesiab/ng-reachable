@@ -7,9 +7,9 @@ import { User } from 'app/models/user';
 
 
 @Component({
-    selector: 'birth-chart',
-    templateUrl: './birth-chart.component.html',
-    styleUrls: ['./birth-chart.component.css']
+    selector: 'weekly-report',
+    templateUrl: './weekly-report.component.html',
+    styleUrls: ['./weekly-report.component.css']
 })
 export class BirthChartComponent implements OnInit {
 
