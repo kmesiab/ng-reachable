@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { BirthChartService } from './birth-chart.service';
+import { BirthChartService } from './weekly-component.service';
 
 describe('BirthChartService', () => {
   let service: BirthChartService;

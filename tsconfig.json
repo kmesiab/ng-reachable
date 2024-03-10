@@ -1,5 +1,8 @@
 {
   "compileOnSave": false,
+  "angularCompilerOptions": {
+    "strictTemplates": false,
+  },
   "compilerOptions": {
     "downlevelIteration": true,
     "importHelpers": true,
@@ -10,6 +13,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strict": false,
     "typeRoots": [
       "node_modules/@types"
     ],

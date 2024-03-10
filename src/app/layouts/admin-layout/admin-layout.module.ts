@@ -7,7 +7,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 
 import { UserComponent }            from '../../pages/user/user.component';
 import { TableComponent }           from '../../pages/table/table.component';
-import { BirthChartComponent }      from '../../pages/birth-chart/birth-chart.component';
+import { BirthChartComponent }      from '../../pages/weekly-report/weekly-report.component';
 import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

@@ -18,9 +18,8 @@
 
         <!-- Daily horoscope -->
         <p class="description text-center">
-          Libra, seek harmony in your relationships today.
-          Use your charm and diplomacy to resolve conflicts.
-          Balance is key in all aspects of life.
+          Daily Mindfulness: "Remember your sensitivity to certain videos and content. 
+          Try limiting your time on social media today."
         </p>
       </div>
       <div class="card-footer">
@@ -30,19 +29,19 @@
             <div class="col-lg-3 col-md-6 col-6 ml-auto">
               <h5>250
                 <br>
-                <small>Credits</small>
+                <small>Messages</small>
               </h5>
             </div>
             <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>12
+              <h5>16
                 <br>
-                <small>Used</small>
+                <small>Reports</small>
               </h5>
             </div>
             <div class="col-lg-3 mr-auto">
-              <h5>$17.97
+              <h5>$14.97
                 <br>
-                <small>Spent</small>
+                <small>Plan</small>
               </h5>
             </div>
           </div>
@@ -51,62 +50,63 @@
     </div>
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Readings</h4>
+        <h4 class="card-title">My Quick Links</h4>
       </div>
       <div class="card-body">
         <ul class="list-unstyled team-members">
           <li>
             <div class="row">
               <div class="col-md-2 col-2">
-                <div class="avatar">
-                  🔮
+                <div>
+                  💊
                 </div>
               </div>
               <div class="col-md-7 col-7">
-                Taro
+                Medications
                 <br />
                 <span class="text-success">
-                  <small>Available</small>
+                  <small>Up To Date</small>
                 </span>
               </div>
               <div class="col-md-3 col-3 text-right">
                 <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                    class="fa fa-envelope"></i></button>
+                  class="fa fa-heartbeat"></i></button>
               </div>
             </div>
           </li>
           <li>
             <div class="row">
               <div class="col-md-2 col-2">
-                <div class="avatar">
-                  ☪️
+                <div>
+                  📅
                 </div>
               </div>
               <div class="col-md-7 col-7">
-                Star Chart
+                 Upcoming Appointments
                 <br />
                 <span class="text-success">
-                  <small><a href="#">Ready</a></small>
+                  <small><a href="#">Thur, 4pm - Jane Doe MD.</a></small>
                 </span>
               </div>
               <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i
-                    class="fa fa-envelope"></i></button>
+                <button class="btn btn-sm btn-outline-success btn-round btn-icon">
+                  <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                </button>
               </div>
             </div>
           </li>
           <li>
             <div class="row">
               <div class="col-md-2 col-2">
-                <div class="avatar">
+                <div>
                   💬
                 </div>
               </div>
               <div class="col-ms-7 col-7">
-                Counsel
+                My Therapist
                 <br />
                 <span class="text-danger">
-                  <small>Offline</small>
+                  <small><a href="#">Online</a></small>
                 </span>
               </div>
               <div class="col-md-3 col-3 text-right">
@@ -172,7 +172,7 @@
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()">Update Profile</button>
+              <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()" [disabled]="updatingUserInfo">Update Profile</button>
               <!-- Sign Out -->
               <button (click)="signOut()" class="btn btn-outline-primary btn-round">
                 <i class="nc-icon nc-user-run"></i> Sign Out
@@ -183,4 +183,70 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Edit Profile</h5>
+      </div>
+      <div class="card-body">
+  <div class="row">
+
+  <div class="card-body">
+
+    <div *ngIf="errorMessage !== ''">
+      <div class="alert alert-warning">
+        <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
+          <i class="nc-icon nc-simple-remove"></i>
+        </button>
+        <span><b> Warning - </b> {{ errorMessage }}</span>
+      </div>
+
+      <div *ngIf="updateMessage !== ''">
+        <div class="alert alert-info">
+          <button type="button" aria-hidden="true" class="close" (click)="closeWarning()">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+          <span><b> Warning - </b> {{ updateMessage }}</span>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" class="form-control" name="date_of_birth">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Medication</label>
+        <textarea class="form-control" name="fact_1" placeholder="Enter a fact"></textarea>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Medication</label>
+        <input class="form-control" type="text" name="dosage" placeholder="Dosage">
+      </div>
+    </div>
+    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button ton tton type="submit" class="btn btn-primary btn-round">Update</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="update ml-auto mr-auto">
+        <button type="submit" class="btn btn-primary btn-round" (click)="updateProfile()" [disabled]="updatingUserInfo">Update Profile</button>
+        <!-- Sign Out -->
+        <button (click)="signOut()" class="btn btn-outline-primary btn-round">
+          <i class="nc-icon nc-user-run"></i> Sign Out
+        </button>
+      </div>
+    </div>
 </div>
